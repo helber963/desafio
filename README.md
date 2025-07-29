@@ -96,6 +96,3 @@ Este repositório possui uma esteira automatizada com os seguintes passos:
 
 A pipeline é executada automaticamente a cada push na branch `main`.
 
----
-
-Se quiser, posso adaptar esse `README.md` ao seu repositório real (com nomes e caminhos reais de recursos e outputs). Deseja isso?
