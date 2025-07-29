@@ -18,6 +18,9 @@ Utilize uma aplicação simples (Node.js, Python, etc.).
 Crie um Dockerfile que exponha a porta 8080.
 Implemente um endpoint /health para verificação de saúde.
 
+
+
+
 Parte 3: Pipeline de CI/CD
 Configure um pipeline com uma das ferramentas abaixo: - GitHub Actions - GitLab CI/CD - CircleCI
 O pipeline deve realizar: 1. Checkout do repositório 2. Build da imagem Docker 3. Push para o ECR 4.
