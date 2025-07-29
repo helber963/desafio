@@ -1,27 +1,101 @@
-Parte 1: Infraestrutura (Terraform)
-Implemente os seguintes recursos utilizando Terraform:
-VPC com ao menos 2 subnets públicas e 2 privadas
-NAT Gateway para as subnets privadas
-ECS Cluster (Fargate)
-Task Definition e Service
-Application Load Balancer escutando em porta 80 ou 443
-Repositório ECR para imagens Docker
-IAM Roles e Policies com privilégio mínimo
-Security Groups restritivos
-(Opcional) Auto Scaling para ECS Tasks
+Perfeito! Aqui está um exemplo completo de um `README.md` simples e direto, cobrindo exatamente o que foi solicitado:
 
+---
 
+## 🛠️ Health App – Infraestrutura com Terraform e Deploy com CI/CD
 
+Aplicação Node.js com endpoint `/health` exposta via Load Balancer, empacotada com Docker, provisionada com Terraform e automatizada com GitHub Actions.
 
-Parte 2: Aplicação
-Utilize uma aplicação simples (Node.js, Python, etc.).
-Crie um Dockerfile que exponha a porta 8080.
-Implemente um endpoint /health para verificação de saúde.
+---
 
+## 🚀 Como aplicar o Terraform localmente
 
+### Pré-requisitos:
 
+* Terraform instalado (`terraform -v`)
+* AWS CLI configurado (`aws configure`)
+* Docker instalado (opcional, para testar local)
+* Permissões adequadas no IAM
 
-Parte 3: Pipeline de CI/CD
-Configure um pipeline com uma das ferramentas abaixo: - GitHub Actions - GitLab CI/CD - CircleCI
-O pipeline deve realizar: 1. Checkout do repositório 2. Build da imagem Docker 3. Push para o ECR 4.
-Execução do Terraform ( init , plan , apply )# desafio
+### Passos:
+
+1. Acesse o diretório de infraestrutura:
+
+   ```bash
+   cd terraform/
+   ```
+
+2. Inicialize o Terraform:
+
+   ```bash
+   terraform init
+   ```
+
+3. Visualize as mudanças:
+
+   ```bash
+   terraform plan
+   ```
+
+4. Aplique a infraestrutura:
+
+   ```bash
+   terraform apply -auto-approve
+   ```
+
+---
+
+## 🌐 Como acessar o serviço via Load Balancer
+
+Após a finalização do `terraform apply`, será exibido o DNS do Load Balancer como output:
+
+```bash
+Outputs:
+
+load_balancer_dns_name = "http://<dns-do-load-balancer>"
+```
+
+Acesse no navegador:
+
+```
+http://<dns-do-load-balancer>/health
+```
+
+Você deve ver:
+
+```
+OK
+```
+
+---
+
+## 📋 Como verificar os logs no CloudWatch
+
+1. Acesse o console da AWS: [https://console.aws.amazon.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)
+
+2. Vá até **Logs > Log groups**.
+
+3. Procure por algo como:
+
+   ```
+   /ecs/health-app
+   ```
+
+4. Clique no grupo de logs e veja os logs das execuções da task ECS Fargate.
+
+---
+
+## 🔄 CI/CD com GitHub Actions
+
+Este repositório possui uma esteira automatizada com os seguintes passos:
+
+* Checkout do código
+* Build da imagem Docker
+* Push para o Amazon ECR
+* Execução do Terraform
+
+A pipeline é executada automaticamente a cada push na branch `main`.
+
+---
+
+Se quiser, posso adaptar esse `README.md` ao seu repositório real (com nomes e caminhos reais de recursos e outputs). Deseja isso?
